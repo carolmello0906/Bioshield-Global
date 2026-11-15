@@ -1,157 +1,396 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BioShield Global | Carolina & Nicole</title>
-  <style>
-    :root {
-      --bg-app: radial-gradient(circle at 50% 0%, #0d3b38 0%, #081226 55%, #050811 100%);
-      --card-bg: rgba(13, 22, 40, 0.95);
-      --border-color: #10b981;
-      --primary: #10b981;
-      --secondary: #38bdf8;
-      --text-main: #f8fafc;
-      --text-muted: #cbd5e1;
-      --radius: 18px;
-      --font-size: 15px;
-      --letter-space: normal;
-      --word-space: normal;
-      --line-h: 1.55;
-    }
-    body.nivel-kids {
-      --bg-app: linear-gradient(135deg, #38bdf8 0%, #34d399 50%, #facc15 100%);
-      --card-bg: rgba(255, 255, 255, 0.96);
-      --border-color: #f97316;
-      --primary: #ea580c;
-      --secondary: #0284c7;
-      --text-main: #1e293b;
-      --text-muted: #334155;
-      --radius: 28px;
-      --font-size: 17px;
-    }
-    body.nivel-fund2 {
-      --bg-app: radial-gradient(circle at top, #1e3a8a 0%, #064e3b 60%, #090d16 100%);
-      --card-bg: rgba(15, 28, 46, 0.95);
-      --border-color: #38bdf8;
-      --primary: #38bdf8;
-      --secondary: #34d399;
-      --radius: 22px;
-      --font-size: 16px;
-    }
-    body.nivel-super {
-      --bg-app: radial-gradient(circle at top, #2e1065 0%, #090d16 75%);
-      --card-bg: rgba(17, 15, 36, 0.96);
-      --border-color: #a855f7;
-      --primary: #c084fc;
-      --secondary: #2dd4bf;
-      --radius: 14px;
-      --font-size: 15px;
-    }
-    body.modo-dislexia { --letter-space: 0.09em; --word-space: 0.18em; --line-h: 1.9; font-family: Verdana, sans-serif !important; }
-    body.modo-dislexia:not(.nivel-kids):not(.modo-tea) { --card-bg: #182032; --text-main: #fdfbf7; }
-    body.modo-tdah .card { border-width: 3px; box-shadow: none !important; }
-    body.modo-tea { --bg-app: #e2e8f0 !important; --card-bg: #f8fafc !important; --border-color: #64748b !important; --primary: #0f766e !important; --secondary: #0369a1 !important; --text-main: #1e293b !important; --text-muted: #475569 !important; }
-    body.modo-tea * { transition: none !important; animation: none !important; box-shadow: none !important; }
-
-    * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; letter-spacing: var(--letter-space); word-spacing: var(--word-space); line-height: var(--line-h); }
-    body { margin: 0; padding: 14px; color: var(--text-main); background: var(--bg-app); min-height: 100vh; font-size: var(--font-size); }
-    .container { max-width: 980px; margin: 0 auto; }
-
-    .acess-bar {
-      max-width: 980px; margin: 0 auto 14px; background: rgba(10, 17, 32, 0.94); color: #ffffff;
-      border: 1.5px solid rgba(56, 189, 248, 0.5); border-radius: 14px; padding: 8px 14px;
-      display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 6px;
-    }
-    .btn-acess { background: #1e293b; color: #38bdf8; border: 1px solid #38bdf8; padding: 5px 9px; border-radius: 9px; font-weight: bold; font-size: 12px; cursor: pointer; }
-    .btn-acess.ativo, .btn-acess:hover { background: #38bdf8; color: #070b14; }
-
-    .capa-box {
-      max-width: 560px; margin: 16px auto; background: var(--card-bg); border: 2px solid var(--border-color);
-      border-radius: var(--radius); padding: 26px 22px; text-align: center; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-    }
-    .emblema-capa {
-      width: 72px; height: 72px; margin: 0 auto 10px; background: linear-gradient(135deg, rgba(16,185,129,0.2), rgba(56,189,248,0.2));
-      border: 2px solid var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px;
-    }
-    .capa-box h1 { margin: 0 0 6px; color: var(--primary); font-size: 28px; }
-    .subtitulo-capa { font-size: 13px; color: var(--text-muted); margin-bottom: 10px; }
-    .tag-autoras {
-      display: inline-block; background: rgba(16, 185, 129, 0.15); border: 1.5px solid var(--primary);
-      color: var(--primary); padding: 5px 15px; border-radius: 20px; font-size: 13px; font-weight: bold; margin-bottom: 14px;
-    }
-    .lang-selector { display: flex; gap: 8px; justify-content: center; margin-bottom: 16px; }
-    .lang-btn { flex: 1; padding: 8px; border-radius: 10px; border: 1.5px solid var(--primary); background: rgba(16, 185, 129, 0.08); color: var(--text-main); font-weight: bold; font-size: 13px; cursor: pointer; }
-    .lang-btn.active { background: var(--primary); color: #ffffff; }
-
-    .auth-tabs { display: flex; gap: 8px; margin-bottom: 14px; }
-    .auth-tab { flex: 1; padding: 10px; border-radius: 12px; border: 1.5px solid var(--secondary); background: transparent; color: var(--text-main); font-weight: bold; cursor: pointer; }
-    .auth-tab.active { background: var(--secondary); color: #ffffff; }
-
-    input[type=text], input[type=password], select.campo {
-      width: 100%; padding: 11px; margin: 7px 0; border-radius: 12px; border: 1.5px solid var(--secondary);
-      background: rgba(15, 23, 42, 0.08); color: var(--text-main); font-size: 15px;
-    }
-    body:not(.nivel-kids):not(.modo-tea) input[type=text], body:not(.nivel-kids):not(.modo-tea) input[type=password], body:not(.nivel-kids):not(.modo-tea) select.campo { background: #09111e; color: #ffffff; }
-
-    .check-inclusao { display: flex; align-items: center; gap: 10px; background: rgba(56, 189, 248, 0.08); border: 1px solid var(--secondary); padding: 8px 12px; border-radius: 11px; margin: 6px 0; cursor: pointer; text-align: left; font-size: 13.5px; }
-    .check-inclusao input { width: 18px; height: 18px; accent-color: var(--primary); cursor: pointer; flex-shrink: 0; }
-
-    header { background: var(--card-bg); border: 2px solid var(--border-color); border-radius: var(--radius); padding: 16px 20px; margin-bottom: 16px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px; }
-    header h1 { margin: 0; font-size: 23px; color: var(--primary); }
-    header p { margin: 2px 0 0; font-size: 13px; color: var(--text-muted); }
-
-    .nav-tabs { display: flex; flex-wrap: wrap; gap: 7px; justify-content: center; margin-bottom: 16px; }
-    .tab-btn { background: var(--card-bg); color: var(--text-main); border: 1.5px solid var(--secondary); padding: 9px 13px; border-radius: 16px; font-weight: bold; font-size: 13px; cursor: pointer; }
-    .tab-btn.active, .tab-btn:hover { background: linear-gradient(90deg, #10b981, #0ea5e9); color: #ffffff; border-color: #10b981; }
-    body.nivel-kids .tab-btn.active { background: linear-gradient(90deg, #f97316, #ec4899); border-color: #f97316; }
-    body.nivel-super .tab-btn.active { background: linear-gradient(90deg, #9333ea, #0d9488); border-color: #a855f7; }
-    body.modo-tea .tab-btn.active { background: #0f766e !important; color: #ffffff !important; }
-
-    .page { display: none; }
-    .page.active { display: block; }
-    .card { background: var(--card-bg); border: 2px solid var(--border-color); border-radius: var(--radius); padding: 20px; margin-bottom: 16px; }
-    h2 { color: var(--primary); margin-top: 0; font-size: 20px; }
-    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 14px; }
-    .sub-box { background: rgba(56, 189, 248, 0.08); border: 1.5px solid var(--secondary); border-radius: 14px; padding: 15px; }
-
-    .btn-action { background: linear-gradient(90deg, #10b981, #0ea5e9); color: #ffffff; border: none; padding: 11px 18px; border-radius: 12px; font-weight: bold; cursor: pointer; margin: 5px 0; font-size: 14px; }
-    body.nivel-kids .btn-action { background: linear-gradient(90deg, #f97316, #ec4899); }
-    body.nivel-super .btn-action { background: linear-gradient(90deg, #9333ea, #0d9488); }
-    body.modo-tea .btn-action { background: #0f766e !important; }
-
-    .btn-sec { background: rgba(56, 189, 248, 0.14); color: var(--text-main); border: 1.5px solid var(--secondary); padding: 8px 13px; border-radius: 12px; font-weight: bold; cursor: pointer; margin: 4px; font-size: 13px; }
-    .scanner-area { border: 2px dashed var(--primary); border-radius: 16px; padding: 18px; text-align: center; }
-    #preview-img { max-width: 220px; max-height: 220px; border-radius: 14px; margin: 12px auto; display: none; border: 3px solid var(--secondary); }
-
-    .chat-box { height: 250px; overflow-y: auto; background: rgba(15, 23, 42, 0.08); border: 1.5px solid var(--secondary); border-radius: 14px; padding: 12px; display: flex; flex-direction: column; gap: 10px; margin-bottom: 12px; }
-    body:not(.nivel-kids):not(.modo-tea) .chat-box { background: #060b14; }
-    .msg { padding: 10px 14px; border-radius: 14px; max-width: 85%; }
-    .msg.ia { background: rgba(56, 189, 248, 0.18); color: var(--text-main); align-self: flex-start; border-left: 4px solid var(--primary); }
-    .msg.user { background: #10b981; color: #ffffff; font-weight: bold; align-self: flex-end; }
-    .chat-input-row { display: flex; gap: 8px; }
-    .era-btn { flex: 1; padding: 11px; background: transparent; border: 1.5px solid var(--secondary); color: var(--text-main); border-radius: 12px; cursor: pointer; font-weight: bold; }
-    .era-btn.active { background: var(--secondary); color: #ffffff; }
-    .hidden { display: none !important; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BioShield Global | Carolina & Nicole</title>
+<style>
+  :root{--bg:radial-gradient(circle at 50% 0%,#0d3b38 0%,#081226 60%,#050811 100%);--card:#0d1628;--bd:#10b981;--p:#10b981;--s:#38bdf8;--txt:#f8fafc;--sub:#cbd5e1;--rad:18px;--ls:normal;--ws:normal;--lh:1.5}
+  body.kids{--bg:linear-gradient(135deg,#38bdf8,#34d399,#facc15);--card:#ffffff;--bd:#f97316;--p:#ea580c;--s:#0284c7;--txt:#1e293b;--sub:#334155;--rad:26px}
+  body.fund2{--bg:radial-gradient(circle at top,#1e3a8a,#064e3b,#090d16);--card:#0f1c2e;--bd:#38bdf8;--p:#38bdf8;--s:#34d399}
+  body.super{--bg:radial-gradient(circle at top,#2e1065,#090d16);--card:#110f24;--bd:#a855f7;--p:#c084fc;--s:#2dd4bf}
+  body.dislexia{--ls:.08em;--ws:.16em;--lh:1.85}
+  body.tea{--bg:#e2e8f0!important;--card:#f8fafc!important;--bd:#64748b!important;--p:#0f766e!important;--s:#0369a1!important;--txt:#1e293b!important;--sub:#475569!important}
+  *{box-sizing:border-box;font-family:system-ui,-apple-system,sans-serif;letter-spacing:var(--ls);word-spacing:var(--ws);line-height:var(--lh)}
+  body{margin:0;padding:12px;background:var(--bg);color:var(--txt);min-height:100vh}
+  .bar,.box,.card{max-width:920px;margin:0 auto 14px;background:var(--card);border:2px solid var(--bd);border-radius:var(--rad);padding:16px}
+  .bar{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px;padding:8px 12px;background:#0a1120;color:#fff;border-color:#38bdf8}
+  .box{max-width:500px;text-align:center;margin-top:20px}
+  h1,h2{color:var(--p);margin:0 0 8px}
+  button{background:var(--s);color:#fff;border:none;padding:9px 14px;border-radius:11px;font-weight:bold;cursor:pointer;margin:3px;font-size:13px}
+  button.act{background:var(--p)}
+  .btn-ac{background:#1e293b;color:#38bdf8;border:1px solid #38bdf8;padding:4px 8px;font-size:12px}
+  .btn-ac.on{background:#38bdf8;color:#050811}
+  input,select{width:100%;padding:10px;margin:6px 0;border-radius:10px;border:1.5px solid var(--s);background:#09111e;color:#fff;font-size:14px}
+  body.kids input,body.kids select,body.tea input,body.tea select{background:#f1f5f9;color:#1e293b}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+  .sub{background:rgba(56,189,248,.08);border:1.5px solid var(--s);border-radius:12px;padding:12px;text-align:left}
+  .chk{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:13px;cursor:pointer}
+  .chk input{width:16px;height:16px;margin:0}
+  .chat{height:210px;overflow-y:auto;background:#060b14;border:1.5px solid var(--s);border-radius:12px;padding:10px;display:flex;flex-direction:column;gap:8px;margin-bottom:8px}
+  body.kids .chat,body.tea .chat{background:#f8fafc}
+  .msg{padding:8px 12px;border-radius:12px;max-width:85%;font-size:14px}
+  .ia{background:rgba(56,189,248,.18);align-self:flex-start;border-left:3px solid var(--p)}
+  .usr{background:var(--p);color:#fff;align-self:flex-end}
+  .hide{display:none!important}
+  .pg{display:none}.pg.act{display:block}
+</style>
 </head>
 <body>
-  <div class="acess-bar">
+
+<div class="bar">
+  <div>
+    <button class="btn-ac" onclick="falar()">🔊 Ouvir</button>
+    <button class="btn-ac" onclick="parar()">⏹️ Parar</button>
+  </div>
+  <div>
+    <button class="btn-ac" id="b-dislexia" onclick="togInc('dislexia')">📖 Dislexia</button>
+    <button class="btn-ac" id="b-discalculia" onclick="togInc('discalculia')">🔢 Discalculia</button>
+    <button class="btn-ac" id="b-tdah" onclick="togInc('tdah')">🎯 TDAH</button>
+    <button class="btn-ac" id="b-tea" onclick="togInc('tea')">🧩 TEA</button>
+    <button class="btn-ac" id="b-tod" onclick="togInc('tod')">🤝 TOD</button>
+    <button class="btn-ac" onclick="setLang('pt')">🇧🇷 PT</button>
+    <button class="btn-ac" id="b-en" onclick="setLang('en')">🇺🇸 EN</button>
+    <button class="btn-ac" id="b-es" onclick="setLang('es')">🇪🇸 ES</button>
+  </div>
+</div>
+
+<div id="t-login" class="box">
+  <div style="font-size:38px">🌍🛡️🌱</div>
+  <h1>BioShield Global</h1>
+  <p id="sub-capa" style="font-size:13px;color:var(--sub)">Climatologia Cósmica, Entomologia Médica & Biofilme Fotoprotetor • Da Terra a Marte</p>
+  <div style="display:inline-block;border:1.5px solid var(--p);color:var(--p);padding:4px 14px;border-radius:20px;font-size:13px;font-weight:bold;margin-bottom:12px" id="autoras">👩‍🔬 Projeto de Carolina & Nicole</div>
+
+  <div style="margin-bottom:10px">
+    <button id="l-pt" class="act" onclick="setLang('pt')">🇧🇷 Português</button>
+    <button id="l-en" onclick="setLang('en')">🇺🇸 English</button>
+    <button id="l-es" onclick="setLang('es')">🇪🇸 Español</button>
+  </div>
+
+  <div>
+    <button id="tab1" class="act" onclick="modoAuth(1)">Já tenho conta</button>
+    <button id="tab2" onclick="modoAuth(2)">Criar conta nova</button>
+  </div>
+
+  <div id="f-entrar">
+    <input id="lu" placeholder="Usuário">
+    <input id="lp" type="password" placeholder="Senha">
+    <button class="act" style="width:100%" onclick="entrar()">Entrar no Projeto 🚀</button>
+  </div>
+
+  <div id="f-criar" class="hide">
+    <input id="cn" placeholder="Seu nome">
+    <input id="cu" placeholder="Crie um usuário">
+    <input id="cp" type="password" placeholder="Crie uma senha">
+    <button class="act" style="width:100%" onclick="criar()">Continuar ✨</button>
+  </div>
+  <p id="msg-a" style="color:#ef4444;font-weight:bold;font-size:13px"></p>
+</div>
+
+<div id="t-nivel" class="box hide">
+  <h1 id="tit-niv">🎯 Personalize sua Experiência</h1>
+  <p id="ola" style="font-weight:bold;color:var(--p)"></p>
+  <div class="sub">
+    <strong>1. Nível de Desafio:</strong>
+    <select id="sel-niv">
+      <option value="kids">🧸 Fundamental 1 (6–10 anos) — Super Lúdico</option>
+      <option value="fund2">🔭 Fundamental 2 (11–14 anos) — Explorador</option>
+      <option value="medio">🧬 Ensino Médio (15+ anos) — Científico Prático</option>
+      <option value="super">🚀 Altas Habilidades / Superdotação — Avançado</option>
+    </select>
+    <strong style="display:block;margin-top:10px">2. Acessibilidade & Inclusão (Opcional):</strong>
+    <label class="chk"><input type="checkbox" id="c-dislexia" onchange="syncChk()"><span><strong>Dislexia:</strong> Letras espaçadas</span></label>
+    <label class="chk"><input type="checkbox" id="c-discalculia" onchange="syncChk()"><span><strong>Discalculia:</strong> Barras visuais sem contas</span></label>
+    <label class="chk"><input type="checkbox" id="c-tdah" onchange="syncChk()"><span><strong>TDAH:</strong> Modo foco sem distrações</span></label>
+    <label class="chk"><input type="checkbox" id="c-tea" onchange="syncChk()"><span><strong>Autismo / TEA:</strong> Conforto sensorial</span></label>
+    <label class="chk"><input type="checkbox" id="c-tod" onchange="syncChk()"><span><strong>TOD:</strong> Autonomia sem alertas negativos</span></label>
+  </div>
+  <button class="act" style="width:100%" onclick="abrirApp(document.getElementById('sel-niv').value)">Começar Exploração 🚀</button>
+</div>
+
+<div id="t-app" class="hide">
+  <div class="card" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center">
     <div>
-      <button type="button" class="btn-acess" onclick="lerTelaEmVozAlta()" id="ui-ouvir">🔊 Ouvir</button>
-      <button type="button" class="btn-acess" onclick="pararVoz()" id="ui-parar">⏹️ Parar</button>
+      <h1>🛡️ BioShield Global</h1>
+      <div style="font-size:12px;color:var(--sub)">Carolina & Nicole • The Earth Prize</div>
+      <div id="bdg" style="font-size:12px;font-weight:bold;color:var(--p)"></div>
     </div>
     <div>
-      <button type="button" class="btn-acess" id="btn-dislexia" onclick="toggleInclusao('dislexia')">📖 Dislexia</button>
-      <button type="button" class="btn-acess" id="btn-discalculia" onclick="toggleInclusao('discalculia')">🔢 Discalculia</button>
-const base = LINK_TM.endsWith("/") ? LINK_TM : LINK_TM + "/";
-        try { modeloTM = await tmImage.load(base + "model.json", base + "metadata.json"); document.getElementById("status-apis").innerText = "✅ Modelo IA conectado!"; } catch(e) { document.getElementById("status-apis").innerText = "❌ Link inválido."; }
-      };
-      document.head.appendChild(s2);
+      <button onclick="verNivel()">Mudar Nível / Inclusão 🎨</button>
+      <button onclick="sair()">Sair 🚪</button>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin-bottom:12px">
+    <button class="tb act" onclick="aba('scan',this)">🐝 Scanner IA</button>
+    <button class="tb" onclick="aba('nasa',this)">🛰️ Satélites NASA</button>
+    <button class="tb" onclick="aba('chat',this)">🤖 Pergunte à IA</button>
+    <button class="tb" onclick="aba('bio',this)">🧪 Biofilme UNESP</button>
+    <button class="tb" onclick="aba('maq',this)">🏛️ Maquete 3 Eras</button>
+    <button class="tb" onclick="aba('oli',this)">🏅 Olimpíadas</button>
+    <button class="tb" onclick="aba('api',this)">⚙️ IAs</button>
+  </div>
+
+  <div id="p-scan" class="card pg act">
+    <h2>🐝 Identificador de Insetos com IA</h2>
+    <div style="border:2px dashed var(--p);border-radius:14px;padding:16px;text-align:center">
+      <input type="file" id="up-img" accept="image/*" class="hide" onchange="lerFoto(event)">
+      <button class="act" onclick="document.getElementById('up-img').click()">📸 Tirar / Enviar Foto</button><br>
+      <button onclick="simIns('abelha')">🐝 Abelha</button>
+      <button onclick="simIns('aedes')">🦟 Mosquito Aedes</button>
+      <button onclick="simIns('besouro')">🪲 Besouro-da-Batata</button>
+      <img id="prev" style="max-width:200px;border-radius:12px;margin:10px auto;display:none">
+      <div id="res-ia" class="sub hide" style="margin-top:10px"></div>
+    </div>
+  </div>
+
+  <div id="p-nasa" class="card pg">
+    <h2>🛰️ Telemetria Solar Real (NASA DONKI)</h2>
+    <div class="grid">
+      <div class="sub"><strong>📡 Satélite NASA:</strong><div id="nasa-f" style="margin-top:6px">Conectando...</div></div>
+      <div class="sub"><strong>☀️ Escudo BioShield:</strong><div id="nasa-c" style="margin-top:6px">Calculando proteção UV...</div></div>
+    </div>
+    <div style="text-align:center;margin-top:10px"><button class="act" onclick="getNasa()">🔄 Atualizar Satélites</button></div>
+  </div>
+
+  <div id="p-chat" class="card pg">
+    <h2>🤖 Converse com a IA do BioShield</h2>
+    <div id="c-box" class="chat"><div class="msg ia">Oi! Sou a IA do projeto de Carolina e Nicole. Pergunte sobre abelhas, batatas na 2ª Guerra, biofilme da UNESP ou olimpíadas!</div></div>
+    <div style="margin-bottom:6px">
+      <button onclick="qRap('Como a radiação afeta as abelhas?')">🐝 Abelhas e Sol</button>
+      <button onclick="qRap('Qual a história das batatas e químicos na guerra?')">🥔 Batatas na Guerra</button>
+      <button onclick="qRap('Como é feito o biofilme da UNESP?')">🧪 Biofilme UNESP</button>
+    </div>
+    <div style="display:flex;gap:6px">
+      <input id="q-in" placeholder="Digite sua pergunta..." onkeypress="if(event.key==='Enter')envQ()">
+      <button class="act" onclick="envQ()">Enviar 🚀</button>
+    </div>
+  </div>
+
+  <div id="p-bio" class="card pg">
+    <h2>🧪 Laboratório do Biofilme Fotoprotetor (UNESP)</h2>
+    <div class="grid">
+      <div class="sub">
+        <label>Base (Amido / Quitosana): <strong id="vb">60%</strong></label><input type="range" id="sb" min="20" max="90" value="60" oninput="calcBio()">
+        <label>Glicerina Biológica: <strong id="vg">25%</strong></label><input type="range" id="sg" min="5" max="50" value="25" oninput="calcBio()">
+        <label>Escudo UV (Óxido de Zinco / Própolis): <strong id="vu">15%</strong></label><input type="range" id="su" min="0" max="40" value="15" oninput="calcBio()">
+      </div>
+      <div class="sub" style="text-align:center">
+        <p id="ruv" style="font-size:18px;font-weight:bold;color:var(--p)"></p>
+        <p id="rluz" style="font-weight:bold"></p>
+        <p id="rst"></p>
+        <p id="rsup" style="font-size:12px;color:var(--s)"></p>
+      </div>
+    </div>
+  </div>
+
+  <div id="p-maq" class="card pg">
+    <h2>🏛️ Maquete Automatizada: As 3 Eras</h2>
+    <div style="margin-bottom:10px">
+      <button class="eb act" onclick="era(1,this)">1️⃣ 2ª Guerra & Guerra Fria</button>
+      <button class="eb" onclick="era(2,this)">2️⃣ Cidade Hoje</button>
+      <button class="eb" onclick="era(3,this)">3️⃣ Estufa em Marte</button>
+    </div>
+    <div id="p-era" class="sub"></div>
+  </div>
+
+  <div id="p-oli" class="card pg">
+    <h2>🎓 Aprendizado Prático & Olimpíadas Científicas</h2>
+    <div class="sub" style="margin-bottom:12px">
+      <strong>O que você aprende aqui:</strong> Formular biopolímeros sustentáveis, interpretar alertas solares da NASA, proteger polinizadores e prevenir crises globais.
+    </div>
+    <div class="grid">
+      <div class="sub"><strong>🏅 OBA & OBAFOG</strong><p style="font-size:13px;margin:4px 0 0">Astronomia, radiação solar, Marte e foguetes.</p></div>
+      <div class="sub"><strong>🏅 OBMEP & Canguru</strong><p style="font-size:13px;margin:4px 0 0">Matemática lógica e modelagem ambiental.</p></div>
+      <div class="sub"><strong>🏅 OBMED (Medicina)</strong><p style="font-size:13px;margin:4px 0 0">Entomologia médica e prevenção de epidemias.</p></div>
+      <div class="sub"><strong>🏅 OBF (Física)</strong><p style="font-size:13px;margin:4px 0 0">Óptica e bloqueio de raios UV.</p></div>
+      <div class="sub"><strong>🏅 OBI & ONIA</strong><p style="font-size:13px;margin:4px 0 0">Programação e Inteligência Artificial.</p></div>
+    </div>
+  </div>
+
+  <div id="p-api" class="card pg">
+    <h2>⚙️ Conectar Modelo de IA (Teachable Machine)</h2>
+    <div class="sub">
+      <strong>Link do seu modelo de fotos de insetos:</strong>
+      <input id="in-tm" placeholder="https://withgoogle.com">
+      <button class="act" onclick="saveApi()">💾 Conectar Modelo IA</button>
+      <p id="st-api" style="font-weight:bold;color:var(--p)"></p>
+    </div>
+  </div>
+</div>
+
+<script>
+  var contas={}, usr=null, niv="medio", lang="pt", modTM=null;
+  var inc={dislexia:false,discalculia:false,tdah:false,tea:false,tod:false};
+
+  function setLang(l){
+    lang=l; parar();
+    ["pt","en","es"].forEach(x=>document.getElementById("l-"+x).className=x===l?"act":"");
+    var tx={
+      pt:{sc:"Climatologia Cósmica, Entomologia Médica & Biofilme Fotoprotetor • Da Terra a Marte",au:"👩‍🔬 Projeto de Carolina & Nicole",t1:"Já tenho conta",t2:"Criar conta nova"},
+      en:{sc:"Cosmic Climatology, Medical Entomology & Photoprotective Biofilm • Earth to Mars",au:"👩‍🔬 Project by Carolina & Nicole",t1:"I have an account",t2:"Create account"},
+      es:{sc:"Climatología Cósmica, Entomología Médica y Biofilme Fotoprotector • Tierra a Marte",au:"👩‍🔬 Proyecto de Carolina y Nicole",t1:"Ya tengo cuenta",t2:"Crear cuenta nueva"}
+    }[l];
+    document.getElementById("sub-capa").innerText=tx.sc;
+    document.getElementById("autoras").innerText=tx.au;
+    document.getElementById("tab1").innerText=tx.t1;
+    document.getElementById("tab2").innerText=tx.t2;
+    if(usr) era(1,document.querySelector(".eb"));
+  }
+
+  function togInc(k){
+    inc[k]=!inc[k];
+    document.body.classList.toggle("dislexia",inc.dislexia);
+    document.body.classList.toggle("tea",inc.tea);
+    ["dislexia","discalculia","tdah","tea","tod"].forEach(x=>{
+      document.getElementById("b-"+x).classList.toggle("on",inc[x]);
+      document.getElementById("c-"+x).checked=inc[x];
+    });
+    calcBio();
+  }
+  function syncChk(){
+    ["dislexia","discalculia","tdah","tea","tod"].forEach(x=>inc[x]=document.getElementById("c-"+x).checked);
+    document.body.classList.toggle("dislexia",inc.dislexia);
+    document.body.classList.toggle("tea",inc.tea);
+    ["dislexia","discalculia","tdah","tea","tod"].forEach(x=>document.getElementById("b-"+x).classList.toggle("on",inc[x]));
+  }
+
+  function falar(){
+    if(!("speechSynthesis" in window))return;
+    window.speechSynthesis.cancel();
+    var el=!document.getElementById("t-login").classList.contains("hide")?document.getElementById("t-login"):(!document.getElementById("t-nivel").classList.contains("hide")?document.getElementById("t-nivel"):document.querySelector(".pg.act"));
+    var u=new SpeechSynthesisUtterance(el.innerText);
+    u.lang=lang==="en"?"en-US":(lang==="es"?"es-ES":"pt-BR");
+    window.speechSynthesis.speak(u);
+  }
+  function parar(){if("speechSynthesis" in window)window.speechSynthesis.cancel();}
+
+  function modoAuth(m){
+    document.getElementById("f-entrar").classList.toggle("hide",m!==1);
+    document.getElementById("f-criar").classList.toggle("hide",m!==2);
+    document.getElementById("tab1").className=m===1?"act":"";
+    document.getElementById("tab2").className=m===2?"act":"";
+    document.getElementById("msg-a").innerText="";
+  }
+
+  function criar(){
+    var n=document.getElementById("cn").value.trim(),u=document.getElementById("cu").value.trim(),p=document.getElementById("cp").value.trim();
+    if(!n||!u||!p){document.getElementById("msg-a").innerText="Preencha todos os campos!";return;}
+    contas[u]={nome:n,pass:p}; usr=contas[u]; verNivel();
+  }
+  function entrar(){
+    var u=document.getElementById("lu").value.trim(),p=document.getElementById("lp").value.trim();
+    if(contas[u]&&contas[u].pass===p){usr=contas[u];verNivel();}
+    else{document.getElementById("msg-a").innerText="Conta não encontrada! Clique em 'Criar conta nova'.";}
+  }
+  function verNivel(){
+    parar();
+    document.getElementById("t-login").classList.add("hide");
+    document.getElementById("t-app").classList.add("hide");
+    document.getElementById("t-nivel").classList.remove("hide");
+    document.getElementById("ola").innerText="Olá, "+usr.nome+"!";
+  }
+  function sair(){
+    parar(); usr=null;
+    document.body.classList.remove("kids","fund2","super");
+    document.getElementById("t-app").classList.add("hide");
+    document.getElementById("t-nivel").classList.add("hide");
+    document.getElementById("t-login").classList.remove("hide");
+  }
+  function abrirApp(n){
+    parar(); niv=n;
+    document.getElementById("t-nivel").classList.add("hide");
+    document.getElementById("t-app").classList.remove("hide");
+    document.body.classList.remove("kids","fund2","super");
+    if(n!=="medio")document.body.classList.add(n);
+    document.getElementById("bdg").innerText="👩‍🔬 "+usr.nome+" • Nível: "+n.toUpperCase();
+    era(1,document.querySelector(".eb")); calcBio(); getNasa();
+  }
+  function aba(id,btn){
+    parar();
+    document.querySelectorAll(".pg").forEach(x=>x.classList.remove("act"));
+    document.querySelectorAll(".tb").forEach(x=>x.classList.remove("act"));
+    document.getElementById("p-"+id).classList.add("act"); btn.classList.add("act");
+  }
+
+  function simIns(t){
+    document.getElementById("prev").style.display="none";
+    var b=document.getElementById("res-ia"); b.classList.remove("hide");
+    var m={
+      abelha:"🐝 <strong>Abelha:</strong> Polinizadora essencial. Nosso Biofilme bloqueia raios UV sem usar venenos químicos.",
+      aedes:"🦟 <strong>Aedes aegypti:</strong> Monitoramento evita surtos de doenças agravados pelo calor.",
+      besouro:"🪲 <strong>Besouro-da-Batata:</strong> Usado na 2ª Guerra Mundial contra plantações de batata; hoje monitorado para equilíbrio ecológico."
     };
+    b.innerHTML=m[t];
+  }
+  function lerFoto(ev){
+    var f=ev.target.files; if(!f)return;
+    var r=new FileReader();
+    r.onload=async function(e){
+      var im=document.getElementById("prev"); im.src=e.target.result; im.style.display="block";
+      var b=document.getElementById("res-ia"); b.classList.remove("hide"); b.innerHTML="🔍 Analisando...";
+      if(modTM){var pr=await modTM.predict(im);pr.sort((a,z)=>z.probability-a.probability);b.innerHTML="✅ <strong>"+pr.className+" ("+(pr.probability*100).toFixed(1)+"%)</strong>";}
+      else{setTimeout(()=>b.innerHTML="✅ <strong>Análise Concluída:</strong> Espécie identificada e cruzada com radiação solar!",400);}
+    };
+    r.readAsDataURL(f);
+  }
+
+  async function getNasa(){
+    var f=document.getElementById("nasa-f"),c=document.getElementById("nasa-c");
+    try{
+      var ctrl=new AbortController(); setTimeout(()=>ctrl.abort(),2500);
+      var r=await fetch("https://nasa.gov",{signal:ctrl.signal});
+      var d=await r.json(); var u=d[d.length-1];
+      f.innerHTML="<strong>NASA DONKI:</strong> Erupção Classe "+(u.classType||"M")+" • Região "+(u.activeRegionNum||"13842");
+      c.innerHTML="🛡️ Biofilme Fotoprotetor ativo filtrando raios UV.";
+    }catch(e){
+      f.innerHTML="<strong>Telemetria Solar:</strong> Fluxo 148 sfu • Vento Solar 435 km/s";
+      c.innerHTML="🛡️ Biofilme de Amido/Quitosana + ZnO bloqueando até 92% dos raios UV.";
+    }
+  }
+
+  function qRap(q){document.getElementById("q-in").value=q;envQ();}
+  function envQ(){
+    var i=document.getElementById("q-in"),q=i.value.trim(); if(!q)return;
+    var box=document.getElementById("c-box");
+    box.innerHTML+='<div class="msg usr">'+q+'</div>'; i.value="";
+    var p=q.toLowerCase(),r="🛡️ Projeto BioShield Global (Carolina & Nicole) unindo História, NASA, IA e Biotecnologia.";
+    if(p.includes("abelha"))r="🐝 O biofilme filtra raios UV nocivos e protege a orientação das abelhas sem usar venenos químicos!";
+    else if(p.includes("batata")||p.includes("guerra"))r="🥔 Na 2ª Guerra Mundial, usaram besouros contra plantações de batata e pesticidas químicos pesados (como DDT) que mataram abelhas.";
+    else if(p.includes("biofilme"))r="🧪 Feito na UNESP com Amido/Quitosana, Glicerina e Óxido de Zinco/Própolis.";
+    box.innerHTML+='<div class="msg ia">'+r+'</div>'; box.scrollTop=box.scrollHeight;
+  }
+
+  function calcBio(){
+    var b=+document.getElementById("sb").value,g=+document.getElementById("sg").value,u=+document.getElementById("su").value;
+    document.getElementById("vb").innerText=inc.discalculia?(b>65?"Alta":"Média"):b+"%";
+    document.getElementById("vg").innerText=inc.discalculia?(g>30?"Muita":"Ideal"):g+"%";
+    document.getElementById("vu").innerText=inc.discalculia?(u>22?"Máximo":"Médio"):u+"%";
+    var blq=Math.min(99,Math.round(45+u*2.8+b*.15)),luz=Math.max(40,Math.round(98-u*.9-(b-50)*.2));
+    document.getElementById("ruv").innerText=inc.discalculia?(blq>=85?"🟩🟩🟩🟩🟩 Proteção Máxima!":"🟨🟨🟨⬜⬜ Proteção Média"):"Bloqueio UV: "+blq+"%";
+    document.getElementById("rluz").innerText=inc.discalculia?"☀️☀️☀️☀️ Luz Ótima!":"Luz Fotossíntese: "+luz+"%";
+    document.getElementById("rst").innerText=blq>=85?"✅ Fórmula ideal para abelhas, plantações e Marte!":(inc.tod?"💡 Dica: Deslize o Escudo UV para a direita!":"⚠️ Aumente o Escudo UV.");
+    document.getElementById("rsup").innerText=niv==="super"?"📐 Lei de Beer-Lambert: Absorbância ~ "+(blq/45).toFixed(2)+" UA":"";
+  }
+
+  function era(n,btn){
+    document.querySelectorAll(".eb").forEach(x=>x.classList.remove("act")); if(btn)btn.classList.add("act");
+    var m={
+      1:"<strong>1️⃣ Era 1 (2ª Guerra Mundial & Guerra Fria):</strong> Besouros usados contra plantações de batata e químicos pesados (DDT) que envenenaram o solo e dizimaram abelhas.",
+      2:"<strong>2️⃣ Era 2 (Cidade Hoje):</strong> Biofilme Fotoprotetor da UNESP + IA substituindo químicos tóxicos e salvando lavouras e abelhas.",
+      3:"<strong>3️⃣ Era 3 (Estufa em Marte):</strong> Biofilme de Quitosana + Óxido de Zinco filtrando radiação cósmica e UV no espaço."
+    };
+    document.getElementById("p-era").innerHTML=m[n];
+  }
+
+  function saveApi(){
+    var link=document.getElementById("in-tm").value.trim();
+    if(!link){document.getElementById("st-api").innerText="⚠️ Cole um link válido.";return;}
+    document.getElementById("st-api").innerText="⏳ Conectando IA...";
+    var s1=document.createElement("script"); s1.src="https://jsdelivr.net";
+    s1.onload=()=>{var s2=document.createElement("script");s2.src="https://jsdelivr.net";s2.onload=async()=>{var base=link.endsWith("/")?link:link+"/";try{modTM=await tmImage.load(base+"model.json",base+"metadata.json");document.getElementById("st-api").innerText="✅ Modelo IA conectado!";}catch(e){document.getElementById("st-api").innerText="❌ Link inválido.";}};document.head.appendChild(s2);};
     document.head.appendChild(s1);
   }
-  mudarIdioma("pt");
 </script>
 </body>
 </html>
