@@ -4,12 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BioShield Global | Carolina & Nicole</title>
-  <script src="https://jsdelivr.net"></script>
-  <script src="https://jsdelivr.net"></script>
   <style>
     :root {
       --bg-app: radial-gradient(circle at 50% 0%, #0d3b38 0%, #081226 55%, #050811 100%);
-      --card-bg: rgba(13, 22, 40, 0.94);
+      --card-bg: rgba(13, 22, 40, 0.95);
       --border-color: #10b981;
       --primary: #10b981;
       --secondary: #38bdf8;
@@ -21,7 +19,6 @@
       --word-space: normal;
       --line-h: 1.55;
     }
-
     body.nivel-kids {
       --bg-app: linear-gradient(135deg, #38bdf8 0%, #34d399 50%, #facc15 100%);
       --card-bg: rgba(255, 255, 255, 0.96);
@@ -33,7 +30,6 @@
       --radius: 28px;
       --font-size: 17px;
     }
-
     body.nivel-fund2 {
       --bg-app: radial-gradient(circle at top, #1e3a8a 0%, #064e3b 60%, #090d16 100%);
       --card-bg: rgba(15, 28, 46, 0.95);
@@ -43,7 +39,6 @@
       --radius: 22px;
       --font-size: 16px;
     }
-
     body.nivel-super {
       --bg-app: radial-gradient(circle at top, #2e1065 0%, #090d16 75%);
       --card-bg: rgba(17, 15, 36, 0.96);
@@ -53,372 +48,108 @@
       --radius: 14px;
       --font-size: 15px;
     }
-
-    body.modo-dislexia {
-      --letter-space: 0.09em;
-      --word-space: 0.18em;
-      --line-h: 1.9;
-      font-family: Verdana, Geneva, Tahoma, sans-serif !important;
-    }
-    body.modo-dislexia:not(.nivel-kids):not(.modo-tea) {
-      --card-bg: #182032;
-      --text-main: #fdfbf7;
-    }
-
-    body.modo-tdah .estrelas-bg { display: none !important; }
+    body.modo-dislexia { --letter-space: 0.09em; --word-space: 0.18em; --line-h: 1.9; font-family: Verdana, sans-serif !important; }
+    body.modo-dislexia:not(.nivel-kids):not(.modo-tea) { --card-bg: #182032; --text-main: #fdfbf7; }
     body.modo-tdah .card { border-width: 3px; box-shadow: none !important; }
-
-    body.modo-tea {
-      --bg-app: #e2e8f0 !important;
-      --card-bg: #f8fafc !important;
-      --border-color: #64748b !important;
-      --primary: #0f766e !important;
-      --secondary: #0369a1 !important;
-      --text-main: #1e293b !important;
-      --text-muted: #475569 !important;
-    }
-    body.modo-tea .estrelas-bg { display: none !important; }
+    body.modo-tea { --bg-app: #e2e8f0 !important; --card-bg: #f8fafc !important; --border-color: #64748b !important; --primary: #0f766e !important; --secondary: #0369a1 !important; --text-main: #1e293b !important; --text-muted: #475569 !important; }
     body.modo-tea * { transition: none !important; animation: none !important; box-shadow: none !important; }
 
-    * {
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      letter-spacing: var(--letter-space);
-      word-spacing: var(--word-space);
-      line-height: var(--line-h);
-    }
-
-    body {
-      margin: 0; padding: 14px; color: var(--text-main);
-      background: var(--bg-app); min-height: 100vh; font-size: var(--font-size);
-    }
-
-    .estrelas-bg {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      pointer-events: none; z-index: -1;
-      background-image:
-        radial-gradient(1.5px 1.5px at 15% 20%, rgba(255,255,255,0.6), transparent),
-        radial-gradient(2px 2px at 75% 15%, rgba(56,189,248,0.6), transparent),
-        radial-gradient(1.5px 1.5px at 40% 70%, rgba(52,211,153,0.5), transparent),
-        radial-gradient(2px 2px at 85% 65%, rgba(255,255,255,0.5), transparent);
-    }
-
+    * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; letter-spacing: var(--letter-space); word-spacing: var(--word-space); line-height: var(--line-h); }
+    body { margin: 0; padding: 14px; color: var(--text-main); background: var(--bg-app); min-height: 100vh; font-size: var(--font-size); }
     .container { max-width: 980px; margin: 0 auto; }
 
     .acess-bar {
-      max-width: 980px; margin: 0 auto 14px;
-      background: rgba(10, 17, 32, 0.94); color: #ffffff;
+      max-width: 980px; margin: 0 auto 14px; background: rgba(10, 17, 32, 0.94); color: #ffffff;
       border: 1.5px solid rgba(56, 189, 248, 0.5); border-radius: 14px; padding: 8px 14px;
       display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 6px;
     }
-    .btn-acess {
-      background: #1e293b; color: #38bdf8; border: 1px solid #38bdf8;
-      padding: 5px 9px; border-radius: 9px; font-weight: bold; font-size: 12px; cursor: pointer;
-    }
+    .btn-acess { background: #1e293b; color: #38bdf8; border: 1px solid #38bdf8; padding: 5px 9px; border-radius: 9px; font-weight: bold; font-size: 12px; cursor: pointer; }
     .btn-acess.ativo, .btn-acess:hover { background: #38bdf8; color: #070b14; }
 
     .capa-box {
-      max-width: 560px; margin: 16px auto; background: var(--card-bg);
-      border: 2px solid var(--border-color); border-radius: var(--radius);
-      padding: 26px 22px; text-align: center;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+      max-width: 560px; margin: 16px auto; background: var(--card-bg); border: 2px solid var(--border-color);
+      border-radius: var(--radius); padding: 26px 22px; text-align: center; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
     }
     .emblema-capa {
-      width: 72px; height: 72px; margin: 0 auto 10px;
-      background: linear-gradient(135deg, rgba(16,185,129,0.2), rgba(56,189,248,0.2));
-      border: 2px solid var(--primary); border-radius: 50%;
-      display: flex; align-items: center; justify-content: center; font-size: 32px;
+      width: 72px; height: 72px; margin: 0 auto 10px; background: linear-gradient(135deg, rgba(16,185,129,0.2), rgba(56,189,248,0.2));
+      border: 2px solid var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px;
     }
     .capa-box h1 { margin: 0 0 6px; color: var(--primary); font-size: 28px; }
     .subtitulo-capa { font-size: 13px; color: var(--text-muted); margin-bottom: 10px; }
     .tag-autoras {
-      display: inline-block; background: rgba(16, 185, 129, 0.15);
-      border: 1.5px solid var(--primary); color: var(--primary);
-      padding: 5px 15px; border-radius: 20px; font-size: 13px; font-weight: bold; margin-bottom: 14px;
+      display: inline-block; background: rgba(16, 185, 129, 0.15); border: 1.5px solid var(--primary);
+      color: var(--primary); padding: 5px 15px; border-radius: 20px; font-size: 13px; font-weight: bold; margin-bottom: 14px;
     }
-
-    .lang-selector {
-      display: flex; gap: 8px; justify-content: center; margin-bottom: 16px;
-    }
-    .lang-btn {
-      flex: 1; padding: 8px; border-radius: 10px; border: 1.5px solid var(--primary);
-      background: rgba(16, 185, 129, 0.08); color: var(--text-main);
-      font-weight: bold; font-size: 13px; cursor: pointer;
-    }
-    .lang-btn.active {
-      background: var(--primary); color: #ffffff;
-    }
+    .lang-selector { display: flex; gap: 8px; justify-content: center; margin-bottom: 16px; }
+    .lang-btn { flex: 1; padding: 8px; border-radius: 10px; border: 1.5px solid var(--primary); background: rgba(16, 185, 129, 0.08); color: var(--text-main); font-weight: bold; font-size: 13px; cursor: pointer; }
+    .lang-btn.active { background: var(--primary); color: #ffffff; }
 
     .auth-tabs { display: flex; gap: 8px; margin-bottom: 14px; }
-    .auth-tab {
-      flex: 1; padding: 10px; border-radius: 12px; border: 1.5px solid var(--secondary);
-      background: transparent; color: var(--text-main); font-weight: bold; cursor: pointer;
-    }
+    .auth-tab { flex: 1; padding: 10px; border-radius: 12px; border: 1.5px solid var(--secondary); background: transparent; color: var(--text-main); font-weight: bold; cursor: pointer; }
     .auth-tab.active { background: var(--secondary); color: #ffffff; }
 
     input[type=text], input[type=password], select.campo {
-      width: 100%; padding: 11px; margin: 7px 0; border-radius: 12px;
-      border: 1.5px solid var(--secondary); background: rgba(15, 23, 42, 0.08);
-      color: var(--text-main); font-size: 15px;
+      width: 100%; padding: 11px; margin: 7px 0; border-radius: 12px; border: 1.5px solid var(--secondary);
+      background: rgba(15, 23, 42, 0.08); color: var(--text-main); font-size: 15px;
     }
-    body:not(.nivel-kids):not(.modo-tea) input[type=text],
-    body:not(.nivel-kids):not(.modo-tea) input[type=password],
-    body:not(.nivel-kids):not(.modo-tea) select.campo {
-      background: #09111e; color: #ffffff;
-    }
+    body:not(.nivel-kids):not(.modo-tea) input[type=text], body:not(.nivel-kids):not(.modo-tea) input[type=password], body:not(.nivel-kids):not(.modo-tea) select.campo { background: #09111e; color: #ffffff; }
 
-    .check-inclusao {
-      display: flex; align-items: center; gap: 10px;
-      background: rgba(56, 189, 248, 0.08); border: 1px solid var(--secondary);
-      padding: 8px 12px; border-radius: 11px; margin: 6px 0; cursor: pointer; text-align: left; font-size: 13.5px;
-    }
+    .check-inclusao { display: flex; align-items: center; gap: 10px; background: rgba(56, 189, 248, 0.08); border: 1px solid var(--secondary); padding: 8px 12px; border-radius: 11px; margin: 6px 0; cursor: pointer; text-align: left; font-size: 13.5px; }
     .check-inclusao input { width: 18px; height: 18px; accent-color: var(--primary); cursor: pointer; flex-shrink: 0; }
 
-    header {
-      background: var(--card-bg); border: 2px solid var(--border-color);
-      border-radius: var(--radius); padding: 16px 20px; margin-bottom: 16px;
-      display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;
-    }
+    header { background: var(--card-bg); border: 2px solid var(--border-color); border-radius: var(--radius); padding: 16px 20px; margin-bottom: 16px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px; }
     header h1 { margin: 0; font-size: 23px; color: var(--primary); }
     header p { margin: 2px 0 0; font-size: 13px; color: var(--text-muted); }
 
     .nav-tabs { display: flex; flex-wrap: wrap; gap: 7px; justify-content: center; margin-bottom: 16px; }
-    .tab-btn {
-      background: var(--card-bg); color: var(--text-main); border: 1.5px solid var(--secondary);
-      padding: 9px 13px; border-radius: 16px; font-weight: bold; font-size: 13px; cursor: pointer;
-    }
-    .tab-btn.active, .tab-btn:hover {
-      background: linear-gradient(90deg, #10b981, #0ea5e9); color: #ffffff; border-color: #10b981;
-    }
+    .tab-btn { background: var(--card-bg); color: var(--text-main); border: 1.5px solid var(--secondary); padding: 9px 13px; border-radius: 16px; font-weight: bold; font-size: 13px; cursor: pointer; }
+    .tab-btn.active, .tab-btn:hover { background: linear-gradient(90deg, #10b981, #0ea5e9); color: #ffffff; border-color: #10b981; }
     body.nivel-kids .tab-btn.active { background: linear-gradient(90deg, #f97316, #ec4899); border-color: #f97316; }
     body.nivel-super .tab-btn.active { background: linear-gradient(90deg, #9333ea, #0d9488); border-color: #a855f7; }
     body.modo-tea .tab-btn.active { background: #0f766e !important; color: #ffffff !important; }
 
     .page { display: none; }
     .page.active { display: block; }
-
-    .card {
-      background: var(--card-bg); border: 2px solid var(--border-color);
-      border-radius: var(--radius); padding: 20px; margin-bottom: 16px;
-    }
+    .card { background: var(--card-bg); border: 2px solid var(--border-color); border-radius: var(--radius); padding: 20px; margin-bottom: 16px; }
     h2 { color: var(--primary); margin-top: 0; font-size: 20px; }
-
     .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 14px; }
-    .sub-box {
-      background: rgba(56, 189, 248, 0.08); border: 1.5px solid var(--secondary);
-      border-radius: 14px; padding: 15px;
-    }
+    .sub-box { background: rgba(56, 189, 248, 0.08); border: 1.5px solid var(--secondary); border-radius: 14px; padding: 15px; }
 
-    .btn-action {
-      background: linear-gradient(90deg, #10b981, #0ea5e9); color: #ffffff;
-      border: none; padding: 11px 18px; border-radius: 12px; font-weight: bold; cursor: pointer; margin: 5px 0; font-size: 14px;
-    }
+    .btn-action { background: linear-gradient(90deg, #10b981, #0ea5e9); color: #ffffff; border: none; padding: 11px 18px; border-radius: 12px; font-weight: bold; cursor: pointer; margin: 5px 0; font-size: 14px; }
     body.nivel-kids .btn-action { background: linear-gradient(90deg, #f97316, #ec4899); }
     body.nivel-super .btn-action { background: linear-gradient(90deg, #9333ea, #0d9488); }
     body.modo-tea .btn-action { background: #0f766e !important; }
 
-    .btn-sec {
-      background: rgba(56, 189, 248, 0.14); color: var(--text-main); border: 1.5px solid var(--secondary);
-      padding: 8px 13px; border-radius: 12px; font-weight: bold; cursor: pointer; margin: 4px; font-size: 13px;
-    }
-
-    .scanner-area {
-      border: 2px dashed var(--primary); border-radius: 16px; padding: 18px; text-align: center;
-    }
+    .btn-sec { background: rgba(56, 189, 248, 0.14); color: var(--text-main); border: 1.5px solid var(--secondary); padding: 8px 13px; border-radius: 12px; font-weight: bold; cursor: pointer; margin: 4px; font-size: 13px; }
+    .scanner-area { border: 2px dashed var(--primary); border-radius: 16px; padding: 18px; text-align: center; }
     #preview-img { max-width: 220px; max-height: 220px; border-radius: 14px; margin: 12px auto; display: none; border: 3px solid var(--secondary); }
 
-    .chat-box {
-      height: 250px; overflow-y: auto; background: rgba(15, 23, 42, 0.08); border: 1.5px solid var(--secondary);
-      border-radius: 14px; padding: 12px; display: flex; flex-direction: column; gap: 10px; margin-bottom: 12px;
-    }
+    .chat-box { height: 250px; overflow-y: auto; background: rgba(15, 23, 42, 0.08); border: 1.5px solid var(--secondary); border-radius: 14px; padding: 12px; display: flex; flex-direction: column; gap: 10px; margin-bottom: 12px; }
     body:not(.nivel-kids):not(.modo-tea) .chat-box { background: #060b14; }
-    <div id="tela-app" class="container hidden">
-    <header>
-      <div>
-        <h1>🛡️ BioShield Global</h1>
-        <p id="subtitulo-app">Desenvolvido por Carolina & Nicole • The Earth Prize</p>
-        <span id="badge-usuario" style="font-size:12px; font-weight:bold; color:var(--primary);"></span>
-      </div>
-      <div>
-        <button type="button" class="btn-sec" id="btn-ajustar-perfil" onclick="irParaNivel()">Mudar Nível / Inclusão 🎨</button>
-        <button type="button" class="btn-sec" id="btn-sair-txt" onclick="sairConta()">Sair 🚪</button>
-      </div>
-    </header>
-
-    <div class="nav-tabs">
-      <button type="button" class="tab-btn active" id="nav-scan" onclick="abrirAba('scanner', this)">🐝 Scanner IA</button>
-      <button type="button" class="tab-btn" id="nav-nasa" onclick="abrirAba('nasa', this)">🛰️ Satélites NASA</button>
-      <button type="button" class="tab-btn" id="nav-chat" onclick="abrirAba('chat', this)">🤖 Pergunte à IA</button>
-      <button type="button" class="tab-btn" id="nav-bio" onclick="abrirAba('biofilme', this)">🧪 Biofilme UNESP</button>
-      <button type="button" class="tab-btn" id="nav-maq" onclick="abrirAba('maquete', this)">🏛️ Maquete 3 Eras</button>
-      <button type="button" class="tab-btn" id="nav-oli" onclick="abrirAba('olimpiadas', this)">🏅 Olimpíadas</button>
-      <button type="button" class="tab-btn" id="nav-api" onclick="abrirAba('apis', this)">⚙️ IAs</button>
+    .msg { padding: 10px 14px; border-radius: 14px; max-width: 85%; }
+    .msg.ia { background: rgba(56, 189, 248, 0.18); color: var(--text-main); align-self: flex-start; border-left: 4px solid var(--primary); }
+    .msg.user { background: #10b981; color: #ffffff; font-weight: bold; align-self: flex-end; }
+    .chat-input-row { display: flex; gap: 8px; }
+    .era-btn { flex: 1; padding: 11px; background: transparent; border: 1.5px solid var(--secondary); color: var(--text-main); border-radius: 12px; cursor: pointer; font-weight: bold; }
+    .era-btn.active { background: var(--secondary); color: #ffffff; }
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+  <div class="acess-bar">
+    <div>
+      <button type="button" class="btn-acess" onclick="lerTelaEmVozAlta()" id="ui-ouvir">🔊 Ouvir</button>
+      <button type="button" class="btn-acess" onclick="pararVoz()" id="ui-parar">⏹️ Parar</button>
     </div>
-
-    <div id="page-scanner" class="page active">
-      <div class="card">
-        <h2 id="h-scanner">🐝 Identificador de Insetos com IA</h2>
-        <div class="scanner-area">
-          <input type="file" id="upload-inseto" accept="image/*" style="display:none" onchange="carregarFoto(event)">
-          <button type="button" class="btn-action" id="btn-foto" onclick="document.getElementById('upload-inseto').click()">📸 Tirar / Enviar Foto</button><br>
-          <button type="button" class="btn-sec" id="btn-sim-ab" onclick="simularInseto('abelha')">🐝 Abelha</button>
-          <button type="button" class="btn-sec" id="btn-sim-ae" onclick="simularInseto('aedes')">🦟 Mosquito Aedes</button>
-          <button type="button" class="btn-sec" id="btn-sim-be" onclick="simularInseto('besouro')">🪲 Besouro</button>
-          <img id="preview-img" alt="Insect">
-          <div id="resultado-ia" class="sub-box" style="margin-top:14px; text-align:left; display:none;"></div>
-        </div>
-      </div>
-    </div>
-
-    <div id="page-nasa" class="page">
-      <div class="card">
-        <h2 id="h-nasa">🛰️ Dados Reais do Sol e do Espaço (NASA)</h2>
-        <div class="grid-2">
-          <div class="sub-box"><strong>📡 Satélite NASA DONKI:</strong><div id="dados-nasa-flare" style="margin-top:8px;">Conectando...</div></div>
-          <div class="sub-box"><strong>☀️ Escudo Protetor:</strong><div id="analise-cruzada" style="margin-top:8px;">Analisando UV...</div></div>
-        </div>
-        <div style="text-align:center; margin-top:12px;"><button type="button" class="btn-action" id="btn-att-nasa" onclick="buscarDadosNASA()">🔄 Atualizar Satélites</button></div>
-      </div>
-    </div>
-
-    <div id="page-chat" class="page">
-      <div class="card">
-        <h2 id="h-chat">🤖 Converse com a IA do BioShield</h2>
-        <div class="chat-box" id="chat-historico"><div class="msg ia" id="msg-boas-vindas-chat">Oi! Sou a IA do projeto de Carolina e Nicole. Pergunte sobre abelhas, radiação, o biofilme da UNESP ou olimpíadas!</div></div>
-        <div style="margin-bottom:8px;">
-          <button type="button" class="btn-sec" id="q-rap-1" onclick="perguntaRapida(1)">🐝 Abelhas e Sol</button>
-          <button type="button" class="btn-sec" id="q-rap-2" onclick="perguntaRapida(2)">🧪 Bioplástico</button>
-          <button type="button" class="btn-sec" id="q-rap-3" onclick="perguntaRapida(3)">🚀 Estufa em Marte</button>
-        </div>
-        <div class="chat-input-row">
-          <input type="text" id="pergunta-usuario" placeholder="Digite sua pergunta aqui..." onkeypress="if(event.key==='Enter') enviarPergunta()">
-          <button type="button" class="btn-action" id="btn-enviar-chat" onclick="enviarPergunta()">Enviar 🚀</button>
-        </div>
-      </div>
-    </div>
-
-    <div id="page-biofilme" class="page">
-      <div class="card">
-        <h2 id="h-biofilme">🧪 Laboratório do Biofilme Fotoprotetor (UNESP)</h2>
-        <div class="grid-2">
-          <div class="sub-box">
-            <label>Base (Amido / Quitosana): <strong id="v-base">60%</strong></label><input type="range" id="s-base" min="20" max="90" value="60" oninput="calcBiofilme()" style="width:100%"><br><br>
-            <label>Glicerina Biológica: <strong id="v-glic">25%</strong></label><input type="range" id="s-glic" min="5" max="50" value="25" oninput="calcBiofilme()" style="width:100%"><br><br>
-            <label>Escudo UV (Óxido de Zinco / Própolis): <strong id="v-uv">15%</strong></label><input type="range" id="s-uv" min="0" max="40" value="15" oninput="calcBiofilme()" style="width:100%">
-          </div>
-          <div class="sub-box" style="text-align:center;">
-            <p id="res-uv" style="font-size:18px; font-weight:bold; color:var(--primary);"></p>
-            <p id="res-luz" style="font-weight:bold;"></p>
-            <p id="res-status"></p>
-            <p id="res-extra-super" style="font-size:12.5px; color:var(--secondary);"></p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div id="page-maquete" class="page">
-      <div class="card">
-        <h2 id="h-maq">🏛️ Maquete Automatizada: As 3 Eras</h2>
-        <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px;">
-          <button type="button" class="era-btn active" id="btn-era-1" onclick="mudarEra(1, this)">1️⃣ Guerra Fria</button>
-          <button type="button" class="era-btn" id="btn-era-2" onclick="mudarEra(2, this)">2️⃣ Cidade Hoje</button>
-          <button type="button" class="era-btn" id="btn-era-3" onclick="mudarEra(3, this)">3️⃣ Estufa em Marte</button>
-        </div>
-        <div id="painel-era" class="sub-box"></div>
-      </div>
-    </div>
-
-    <div id="page-olimpiadas" class="page">
-      <div class="card">
-        <h2 id="h-oli">🎓 Aprendizado Prático & Olimpíadas Científicas</h2>
-        <div class="sub-box" style="margin-bottom:14px;" id="lista-aprendizado"></div>
-        <div class="grid-2" id="grid-olimpiadas"></div>
-      </div>
-    </div>
-
-    <div id="page-apis" class="page">
-      <div class="card">
-        <h2 id="h-api">⚙️ Conectar Modelos de IA</h2>
-        <div class="sub-box" style="margin-bottom:10px;">
-          <strong>Link do Teachable Machine (Fotos de Insetos):</strong>
-          <input type="text" id="input-tm" placeholder="https://withgoogle.com">
-        </div>
-        <button type="button" class="btn-action" id="btn-salvar-api" onclick="salvarAPIs()">💾 Salvar Link</button>
-        <p id="status-apis" style="font-weight:bold; color:var(--primary);"></p>
-      </div>
-    </div>
-  </div>
-
-<script>
-  let LINK_TM = "", CHAVE_NASA = "DEMO_KEY", nivelAtual = "medio", idioma = "pt", usuarioLogado = null, modeloTM = null;
-  let inclusao = { dislexia: false, discalculia: false, tdah: false, tea: false, tod: false };
-  let memLocal = {};
-  function ler(k) { try { return localStorage.getItem(k); } catch(e) { return memLocal[k] || null; } }
-  function salvar(k, v) { memLocal[k] = v; try { localStorage.setItem(k, v); } catch(e) {} }
-
-  const dict = {
-    pt: {
-      ouvir: "🔊 Ouvir", parar: "⏹️ Parar",
-      subCapa: "Climatologia Cósmica, Entomologia Médica & Biofilme Fotoprotetor • Da Terra a Marte",
-      autoras: "👩‍🔬 Projeto de Carolina & Nicole",
-      escIdioma: "🌐 Escolha o idioma / Choose language / Elige idioma:",
-      tabEntrar: "Já tenho conta", tabCriar: "Criar conta nova",
-      phUser: "Seu nome de usuário", phPass: "Sua senha", btnEntrar: "Entrar no Projeto 🚀",
-      phCNome: "Qual é o seu nome?", phCUser: "Crie um nome de usuário", phCPass: "Crie uma senha", btnCriar: "Continuar ✨",
-      titNivel: "🎯 Personalize sua Experiência",
-      lblNivel: "1. Escolha o Nível de Desafio (Troque a qualquer momento):",
-      optKids: "🧸 Fundamental 1 (6–10 anos) — Super Lúdico",
-      optFund2: "🔭 Fundamental 2 (11–14 anos) — Explorador Interativo",
-      optMedio: "🧬 Ensino Médio (15+ anos) — Científico Prático",
-      optSuper: "🚀 Altas Habilidades / Superdotação — Pesquisa Avançada",
-      lblInc: "2. Adaptações de Acessibilidade & Neurodiversidade (Opcional):",
-      btnComecar: "Começar Exploração 🚀",
-      subApp: "Desenvolvido por Carolina & Nicole • The Earth Prize",
-      btnAjustar: "Mudar Nível / Inclusão 🎨", btnSair: "Sair 🚪",
-      navScan: "🐝 Scanner IA", navNasa: "🛰️ Satélites NASA", navChat: "🤖 Pergunte à IA",
-      navBio: "🧪 Biofilme UNESP", navMaq: "🏛️ Maquete 3 Eras", navOli: "🏅 Olimpíadas", navApi: "⚙️ IAs",
-      btnFoto: "📸 Tirar / Enviar Foto", abelha: "🐝 Abelha", aedes: "🦟 Mosquito Aedes", besouro: "🪲 Besouro",
-      btnAttNasa: "🔄 Atualizar Satélites",
-      hChat: "🤖 Converse com a IA do BioShield",
-      chatBemVindo: "Oi! Sou a IA do projeto de Carolina e Nicole. Pergunte sobre abelhas, radiação, o biofilme da UNESP ou olimpíadas!",
-      qRap1: "🐝 Abelhas e Sol", qRap2: "🧪 Bioplástico", qRap3: "🚀 Estufa em Marte",
-      phChat: "Digite sua pergunta aqui...", btnEnviar: "Enviar 🚀",
-      era1: "1️⃣ Guerra Fria", era2: "2️⃣ Cidade Hoje", era3: "3️⃣ Estufa em Marte",
-      hOli: "🎓 Aprendizado Prático & Olimpíadas Científicas",
-      aprendizado: `<ul style="margin:0; padding-left:20px;"><li><strong>Biotecnologia:</strong> Formular bioplástico biodegradável que bloqueia raios UV.</li><li><strong>Astrofísica & Clima:</strong> Interpretar satélites da NASA para proteger abelhas e plantações.</li><li><strong>História & Saúde:</strong> Conectar lições da Guerra Fria e Covid-19 para prevenir crises.</li></ul>`,
-      vozLang: "pt-BR"
-    },
-    function mudarEra(n, btn) {
-    document.querySelectorAll(".era-btn").forEach(b => b.classList.remove("active"));
-    if (btn) btn.classList.add("active");
-    const eras = {
-      pt: {
-        1: "<strong>1️⃣ Era 1 (2ª Guerra Mundial & Guerra Fria — Guerra Química e Entomológica):</strong> Uso de besouros como arma biológica para destruir plantações de batata e de pesticidas químicos pesados (como o DDT), que envenenaram o solo e dizimaram abelhas polinizadoras. Lição: a ciência precisa proteger a vida.",
-        2: "<strong>2️⃣ Era 2 (Cidade Hoje — Pós-Covid & Sustentabilidade):</strong> Substituição de químicos tóxicos e plásticos poluentes pelo Biofilme Fotoprotetor da UNESP + monitoramento por IA, salvando lavouras e abelhas.",
-        3: "<strong>3️⃣ Era 3 (Estufa em Marte — Futuro):</strong> Biofilme de Quitosana + Óxido de Zinco filtrando radiação cósmica e UV para cultivar alimentos e manter polinizadores vivos no espaço."
-      },
-      en: {
-        1: "<strong>1️⃣ Era 1 (WWII & Cold War — Chemical & Entomological Warfare):</strong> Colorado potato beetles were studied to destroy potato crops, while heavy chemical pesticides (like DDT) poisoned soil and killed honeybees. Lesson: science must protect life.",
-        2: "<strong>2️⃣ Era 2 (Modern City — Post-Covid & Sustainability):</strong> Replacing toxic chemicals and plastics with UNESP Photoprotective Biofilm + AI monitoring to save crops and bees.",
-        3: "<strong>3️⃣ Era 3 (Mars Greenhouse — Future):</strong> Chitosan + Zinc Oxide biofilm filtering cosmic and UV radiation to grow food and protect pollinators in space."
-      },
-      es: {
-        1: "<strong>1️⃣ Era 1 (2ª Guerra Mundial y Guerra Fría — Guerra Química y Entomológica):</strong> Uso de escarabajos para destruir cultivos de papa y pesticidas químicos pesados (como el DDT) que envenenaron el suelo y mataron abejas. Lección: la ciencia debe proteger la vida.",
-        2: "<strong>2️⃣ Era 2 (Ciudad Hoy — Post-Covid y Sostenibilidad):</strong> Reemplazo de químicos tóxicos y plásticos por el Biofilme Fotoprotector de la UNESP + IA, salvando cultivos y abejas.",
-        3: "<strong>3️⃣ Era 3 (Invernadero en Marte — Futuro):</strong> Biofilme de Quitosano + Óxido de Zinc filtrando radiación cósmica y UV para cultivar alimentos en el espacio."
-      }
+    <div>
+      <button type="button" class="btn-acess" id="btn-dislexia" onclick="toggleInclusao('dislexia')">📖 Dislexia</button>
+      <button type="button" class="btn-acess" id="btn-discalculia" onclick="toggleInclusao('discalculia')">🔢 Discalculia</button>
+const base = LINK_TM.endsWith("/") ? LINK_TM : LINK_TM + "/";
+        try { modeloTM = await tmImage.load(base + "model.json", base + "metadata.json"); document.getElementById("status-apis").innerText = "✅ Modelo IA conectado!"; } catch(e) { document.getElementById("status-apis").innerText = "❌ Link inválido."; }
+      };
+      document.head.appendChild(s2);
     };
-    document.getElementById("painel-era").innerHTML = eras[idioma][n];
-  }
-    const gOlimp = document.getElementById("grid-olimpiadas");
-  [{ s: "OBA & OBAFOG", d: "Astronomia, radiação solar, Marte e foguetes." }, { s: "OBMEP & Canguru", d: "Matemática lógica e modelagem ambiental." }, { s: "OBMED (Medicina)", d: "Entomologia médica e prevenção de epidemias." }, { s: "OBF (Física)", d: "Óptica e bloqueio de raios UV." }, { s: "OBI & ONIA", d: "Programação e Inteligência Artificial." }].forEach(o => {
-    gOlimp.innerHTML += `<div class="sub-box"><strong style="color:var(--primary);">🏅 ${o.s}</strong><p style="font-size:13px; margin:5px 0 0;">${o.d}</p></div>`;
-  });
-
-  async function salvarAPIs() {
-    LINK_TM = document.getElementById("input-tm").value.trim();
-    if (LINK_TM) { const base = LINK_TM.endsWith("/") ? LINK_TM : LINK_TM + "/"; try { modeloTM = await tmImage.load(base + "model.json", base + "metadata.json"); } catch(e) {} }
-    document.getElementById("status-apis").innerText = "✅ Link salvo!";
+    document.head.appendChild(s1);
   }
   mudarIdioma("pt");
 </script>
