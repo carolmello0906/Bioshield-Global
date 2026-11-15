@@ -410,3 +410,17 @@
     };
     document.getElementById("painel-era").innerHTML = eras[idioma][n];
   }
+    const gOlimp = document.getElementById("grid-olimpiadas");
+  [{ s: "OBA & OBAFOG", d: "Astronomia, radiação solar, Marte e foguetes." }, { s: "OBMEP & Canguru", d: "Matemática lógica e modelagem ambiental." }, { s: "OBMED (Medicina)", d: "Entomologia médica e prevenção de epidemias." }, { s: "OBF (Física)", d: "Óptica e bloqueio de raios UV." }, { s: "OBI & ONIA", d: "Programação e Inteligência Artificial." }].forEach(o => {
+    gOlimp.innerHTML += `<div class="sub-box"><strong style="color:var(--primary);">🏅 ${o.s}</strong><p style="font-size:13px; margin:5px 0 0;">${o.d}</p></div>`;
+  });
+
+  async function salvarAPIs() {
+    LINK_TM = document.getElementById("input-tm").value.trim();
+    if (LINK_TM) { const base = LINK_TM.endsWith("/") ? LINK_TM : LINK_TM + "/"; try { modeloTM = await tmImage.load(base + "model.json", base + "metadata.json"); } catch(e) {} }
+    document.getElementById("status-apis").innerText = "✅ Link salvo!";
+  }
+  mudarIdioma("pt");
+</script>
+</body>
+</html>
