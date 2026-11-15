@@ -232,3 +232,181 @@
       border-radius: 14px; padding: 12px; display: flex; flex-direction: column; gap: 10px; margin-bottom: 12px;
     }
     body:not(.nivel-kids):not(.modo-tea) .chat-box { background: #060b14; }
+    <div id="tela-app" class="container hidden">
+    <header>
+      <div>
+        <h1>🛡️ BioShield Global</h1>
+        <p id="subtitulo-app">Desenvolvido por Carolina & Nicole • The Earth Prize</p>
+        <span id="badge-usuario" style="font-size:12px; font-weight:bold; color:var(--primary);"></span>
+      </div>
+      <div>
+        <button type="button" class="btn-sec" id="btn-ajustar-perfil" onclick="irParaNivel()">Mudar Nível / Inclusão 🎨</button>
+        <button type="button" class="btn-sec" id="btn-sair-txt" onclick="sairConta()">Sair 🚪</button>
+      </div>
+    </header>
+
+    <div class="nav-tabs">
+      <button type="button" class="tab-btn active" id="nav-scan" onclick="abrirAba('scanner', this)">🐝 Scanner IA</button>
+      <button type="button" class="tab-btn" id="nav-nasa" onclick="abrirAba('nasa', this)">🛰️ Satélites NASA</button>
+      <button type="button" class="tab-btn" id="nav-chat" onclick="abrirAba('chat', this)">🤖 Pergunte à IA</button>
+      <button type="button" class="tab-btn" id="nav-bio" onclick="abrirAba('biofilme', this)">🧪 Biofilme UNESP</button>
+      <button type="button" class="tab-btn" id="nav-maq" onclick="abrirAba('maquete', this)">🏛️ Maquete 3 Eras</button>
+      <button type="button" class="tab-btn" id="nav-oli" onclick="abrirAba('olimpiadas', this)">🏅 Olimpíadas</button>
+      <button type="button" class="tab-btn" id="nav-api" onclick="abrirAba('apis', this)">⚙️ IAs</button>
+    </div>
+
+    <div id="page-scanner" class="page active">
+      <div class="card">
+        <h2 id="h-scanner">🐝 Identificador de Insetos com IA</h2>
+        <div class="scanner-area">
+          <input type="file" id="upload-inseto" accept="image/*" style="display:none" onchange="carregarFoto(event)">
+          <button type="button" class="btn-action" id="btn-foto" onclick="document.getElementById('upload-inseto').click()">📸 Tirar / Enviar Foto</button><br>
+          <button type="button" class="btn-sec" id="btn-sim-ab" onclick="simularInseto('abelha')">🐝 Abelha</button>
+          <button type="button" class="btn-sec" id="btn-sim-ae" onclick="simularInseto('aedes')">🦟 Mosquito Aedes</button>
+          <button type="button" class="btn-sec" id="btn-sim-be" onclick="simularInseto('besouro')">🪲 Besouro</button>
+          <img id="preview-img" alt="Insect">
+          <div id="resultado-ia" class="sub-box" style="margin-top:14px; text-align:left; display:none;"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="page-nasa" class="page">
+      <div class="card">
+        <h2 id="h-nasa">🛰️ Dados Reais do Sol e do Espaço (NASA)</h2>
+        <div class="grid-2">
+          <div class="sub-box"><strong>📡 Satélite NASA DONKI:</strong><div id="dados-nasa-flare" style="margin-top:8px;">Conectando...</div></div>
+          <div class="sub-box"><strong>☀️ Escudo Protetor:</strong><div id="analise-cruzada" style="margin-top:8px;">Analisando UV...</div></div>
+        </div>
+        <div style="text-align:center; margin-top:12px;"><button type="button" class="btn-action" id="btn-att-nasa" onclick="buscarDadosNASA()">🔄 Atualizar Satélites</button></div>
+      </div>
+    </div>
+
+    <div id="page-chat" class="page">
+      <div class="card">
+        <h2 id="h-chat">🤖 Converse com a IA do BioShield</h2>
+        <div class="chat-box" id="chat-historico"><div class="msg ia" id="msg-boas-vindas-chat">Oi! Sou a IA do projeto de Carolina e Nicole. Pergunte sobre abelhas, radiação, o biofilme da UNESP ou olimpíadas!</div></div>
+        <div style="margin-bottom:8px;">
+          <button type="button" class="btn-sec" id="q-rap-1" onclick="perguntaRapida(1)">🐝 Abelhas e Sol</button>
+          <button type="button" class="btn-sec" id="q-rap-2" onclick="perguntaRapida(2)">🧪 Bioplástico</button>
+          <button type="button" class="btn-sec" id="q-rap-3" onclick="perguntaRapida(3)">🚀 Estufa em Marte</button>
+        </div>
+        <div class="chat-input-row">
+          <input type="text" id="pergunta-usuario" placeholder="Digite sua pergunta aqui..." onkeypress="if(event.key==='Enter') enviarPergunta()">
+          <button type="button" class="btn-action" id="btn-enviar-chat" onclick="enviarPergunta()">Enviar 🚀</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="page-biofilme" class="page">
+      <div class="card">
+        <h2 id="h-biofilme">🧪 Laboratório do Biofilme Fotoprotetor (UNESP)</h2>
+        <div class="grid-2">
+          <div class="sub-box">
+            <label>Base (Amido / Quitosana): <strong id="v-base">60%</strong></label><input type="range" id="s-base" min="20" max="90" value="60" oninput="calcBiofilme()" style="width:100%"><br><br>
+            <label>Glicerina Biológica: <strong id="v-glic">25%</strong></label><input type="range" id="s-glic" min="5" max="50" value="25" oninput="calcBiofilme()" style="width:100%"><br><br>
+            <label>Escudo UV (Óxido de Zinco / Própolis): <strong id="v-uv">15%</strong></label><input type="range" id="s-uv" min="0" max="40" value="15" oninput="calcBiofilme()" style="width:100%">
+          </div>
+          <div class="sub-box" style="text-align:center;">
+            <p id="res-uv" style="font-size:18px; font-weight:bold; color:var(--primary);"></p>
+            <p id="res-luz" style="font-weight:bold;"></p>
+            <p id="res-status"></p>
+            <p id="res-extra-super" style="font-size:12.5px; color:var(--secondary);"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="page-maquete" class="page">
+      <div class="card">
+        <h2 id="h-maq">🏛️ Maquete Automatizada: As 3 Eras</h2>
+        <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px;">
+          <button type="button" class="era-btn active" id="btn-era-1" onclick="mudarEra(1, this)">1️⃣ Guerra Fria</button>
+          <button type="button" class="era-btn" id="btn-era-2" onclick="mudarEra(2, this)">2️⃣ Cidade Hoje</button>
+          <button type="button" class="era-btn" id="btn-era-3" onclick="mudarEra(3, this)">3️⃣ Estufa em Marte</button>
+        </div>
+        <div id="painel-era" class="sub-box"></div>
+      </div>
+    </div>
+
+    <div id="page-olimpiadas" class="page">
+      <div class="card">
+        <h2 id="h-oli">🎓 Aprendizado Prático & Olimpíadas Científicas</h2>
+        <div class="sub-box" style="margin-bottom:14px;" id="lista-aprendizado"></div>
+        <div class="grid-2" id="grid-olimpiadas"></div>
+      </div>
+    </div>
+
+    <div id="page-apis" class="page">
+      <div class="card">
+        <h2 id="h-api">⚙️ Conectar Modelos de IA</h2>
+        <div class="sub-box" style="margin-bottom:10px;">
+          <strong>Link do Teachable Machine (Fotos de Insetos):</strong>
+          <input type="text" id="input-tm" placeholder="https://withgoogle.com">
+        </div>
+        <button type="button" class="btn-action" id="btn-salvar-api" onclick="salvarAPIs()">💾 Salvar Link</button>
+        <p id="status-apis" style="font-weight:bold; color:var(--primary);"></p>
+      </div>
+    </div>
+  </div>
+
+<script>
+  let LINK_TM = "", CHAVE_NASA = "DEMO_KEY", nivelAtual = "medio", idioma = "pt", usuarioLogado = null, modeloTM = null;
+  let inclusao = { dislexia: false, discalculia: false, tdah: false, tea: false, tod: false };
+  let memLocal = {};
+  function ler(k) { try { return localStorage.getItem(k); } catch(e) { return memLocal[k] || null; } }
+  function salvar(k, v) { memLocal[k] = v; try { localStorage.setItem(k, v); } catch(e) {} }
+
+  const dict = {
+    pt: {
+      ouvir: "🔊 Ouvir", parar: "⏹️ Parar",
+      subCapa: "Climatologia Cósmica, Entomologia Médica & Biofilme Fotoprotetor • Da Terra a Marte",
+      autoras: "👩‍🔬 Projeto de Carolina & Nicole",
+      escIdioma: "🌐 Escolha o idioma / Choose language / Elige idioma:",
+      tabEntrar: "Já tenho conta", tabCriar: "Criar conta nova",
+      phUser: "Seu nome de usuário", phPass: "Sua senha", btnEntrar: "Entrar no Projeto 🚀",
+      phCNome: "Qual é o seu nome?", phCUser: "Crie um nome de usuário", phCPass: "Crie uma senha", btnCriar: "Continuar ✨",
+      titNivel: "🎯 Personalize sua Experiência",
+      lblNivel: "1. Escolha o Nível de Desafio (Troque a qualquer momento):",
+      optKids: "🧸 Fundamental 1 (6–10 anos) — Super Lúdico",
+      optFund2: "🔭 Fundamental 2 (11–14 anos) — Explorador Interativo",
+      optMedio: "🧬 Ensino Médio (15+ anos) — Científico Prático",
+      optSuper: "🚀 Altas Habilidades / Superdotação — Pesquisa Avançada",
+      lblInc: "2. Adaptações de Acessibilidade & Neurodiversidade (Opcional):",
+      btnComecar: "Começar Exploração 🚀",
+      subApp: "Desenvolvido por Carolina & Nicole • The Earth Prize",
+      btnAjustar: "Mudar Nível / Inclusão 🎨", btnSair: "Sair 🚪",
+      navScan: "🐝 Scanner IA", navNasa: "🛰️ Satélites NASA", navChat: "🤖 Pergunte à IA",
+      navBio: "🧪 Biofilme UNESP", navMaq: "🏛️ Maquete 3 Eras", navOli: "🏅 Olimpíadas", navApi: "⚙️ IAs",
+      btnFoto: "📸 Tirar / Enviar Foto", abelha: "🐝 Abelha", aedes: "🦟 Mosquito Aedes", besouro: "🪲 Besouro",
+      btnAttNasa: "🔄 Atualizar Satélites",
+      hChat: "🤖 Converse com a IA do BioShield",
+      chatBemVindo: "Oi! Sou a IA do projeto de Carolina e Nicole. Pergunte sobre abelhas, radiação, o biofilme da UNESP ou olimpíadas!",
+      qRap1: "🐝 Abelhas e Sol", qRap2: "🧪 Bioplástico", qRap3: "🚀 Estufa em Marte",
+      phChat: "Digite sua pergunta aqui...", btnEnviar: "Enviar 🚀",
+      era1: "1️⃣ Guerra Fria", era2: "2️⃣ Cidade Hoje", era3: "3️⃣ Estufa em Marte",
+      hOli: "🎓 Aprendizado Prático & Olimpíadas Científicas",
+      aprendizado: `<ul style="margin:0; padding-left:20px;"><li><strong>Biotecnologia:</strong> Formular bioplástico biodegradável que bloqueia raios UV.</li><li><strong>Astrofísica & Clima:</strong> Interpretar satélites da NASA para proteger abelhas e plantações.</li><li><strong>História & Saúde:</strong> Conectar lições da Guerra Fria e Covid-19 para prevenir crises.</li></ul>`,
+      vozLang: "pt-BR"
+    },
+    function mudarEra(n, btn) {
+    document.querySelectorAll(".era-btn").forEach(b => b.classList.remove("active"));
+    if (btn) btn.classList.add("active");
+    const eras = {
+      pt: {
+        1: "<strong>1️⃣ Era 1 (2ª Guerra Mundial & Guerra Fria — Guerra Química e Entomológica):</strong> Uso de besouros como arma biológica para destruir plantações de batata e de pesticidas químicos pesados (como o DDT), que envenenaram o solo e dizimaram abelhas polinizadoras. Lição: a ciência precisa proteger a vida.",
+        2: "<strong>2️⃣ Era 2 (Cidade Hoje — Pós-Covid & Sustentabilidade):</strong> Substituição de químicos tóxicos e plásticos poluentes pelo Biofilme Fotoprotetor da UNESP + monitoramento por IA, salvando lavouras e abelhas.",
+        3: "<strong>3️⃣ Era 3 (Estufa em Marte — Futuro):</strong> Biofilme de Quitosana + Óxido de Zinco filtrando radiação cósmica e UV para cultivar alimentos e manter polinizadores vivos no espaço."
+      },
+      en: {
+        1: "<strong>1️⃣ Era 1 (WWII & Cold War — Chemical & Entomological Warfare):</strong> Colorado potato beetles were studied to destroy potato crops, while heavy chemical pesticides (like DDT) poisoned soil and killed honeybees. Lesson: science must protect life.",
+        2: "<strong>2️⃣ Era 2 (Modern City — Post-Covid & Sustainability):</strong> Replacing toxic chemicals and plastics with UNESP Photoprotective Biofilm + AI monitoring to save crops and bees.",
+        3: "<strong>3️⃣ Era 3 (Mars Greenhouse — Future):</strong> Chitosan + Zinc Oxide biofilm filtering cosmic and UV radiation to grow food and protect pollinators in space."
+      },
+      es: {
+        1: "<strong>1️⃣ Era 1 (2ª Guerra Mundial y Guerra Fría — Guerra Química y Entomológica):</strong> Uso de escarabajos para destruir cultivos de papa y pesticidas químicos pesados (como el DDT) que envenenaron el suelo y mataron abejas. Lección: la ciencia debe proteger la vida.",
+        2: "<strong>2️⃣ Era 2 (Ciudad Hoy — Post-Covid y Sostenibilidad):</strong> Reemplazo de químicos tóxicos y plásticos por el Biofilme Fotoprotector de la UNESP + IA, salvando cultivos y abejas.",
+        3: "<strong>3️⃣ Era 3 (Invernadero en Marte — Futuro):</strong> Biofilme de Quitosano + Óxido de Zinc filtrando radiación cósmica y UV para cultivar alimentos en el espacio."
+      }
+    };
+    document.getElementById("painel-era").innerHTML = eras[idioma][n];
+  }
